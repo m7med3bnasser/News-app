@@ -14,10 +14,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
- void initState(){
-   super.initState();
-   selectedWidget=CategoresWidget(OnCategoryItemClick);
- }
+  void initState() {
+    super.initState();
+    selectedWidget = CategoresWidget(OnCategoryItemClick);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,6 +32,12 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         drawer: HomeDrawer(onMenuItemClick),
         appBar: AppBar(
+          actions: [
+            IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+            SizedBox(
+              width: 20,
+            )
+          ],
           title: Text("News App"),
         ),
         body: selectedWidget,
@@ -38,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  late Widget selectedWidget ;
+  late Widget selectedWidget;
 
   void onMenuItemClick(MenuItem item) {
     Navigator.pop(context);
@@ -54,9 +61,9 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     setState(() {});
   }
-  void OnCategoryItemClick(Category category){
+
+  void OnCategoryItemClick(Category category) {
     selectedWidget = CategoryDetailes(category);
     setState(() {});
-
   }
 }

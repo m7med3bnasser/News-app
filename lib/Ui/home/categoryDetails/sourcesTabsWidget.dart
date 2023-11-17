@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:news_app/Ui/home/categoryDetails/tabWidget.dart';
 import 'package:news_app/Ui/home/nwes/newsListWidget.dart';
 
-import '../../../model/source.dart';
+import '../../../model/sourcesResponse/Source.dart';
+
+
 
 class SourceTasbsWidget extends StatefulWidget {
   List<Source> sources;

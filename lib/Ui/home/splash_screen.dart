@@ -19,7 +19,7 @@ class Splash extends StatelessWidget {
 
     return Container(
       decoration: const BoxDecoration(
-          image: DecorationImage(image: AssetImage("assets/splash.png"))),
+          image: DecorationImage(image: AssetImage("assets/images/splash.png"))),
     );
   }
 }

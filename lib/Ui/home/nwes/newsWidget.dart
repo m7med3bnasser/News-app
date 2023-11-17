@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app/model/news.dart';
+
+import '../../../model/newsResponse/news.dart';
 
 class NewsWidget extends StatelessWidget {
   News news;
@@ -14,26 +16,33 @@ class NewsWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           ClipRRect(
-              borderRadius: BorderRadius.circular(18),
-              child: Image.asset(
-                news.image,
-                width: double.infinity,
-                height: 220,
-                fit: BoxFit.fill,
-              )),
+            borderRadius: BorderRadius.circular(18),
+            child: CachedNetworkImage(
+              imageUrl: news.urlToImage ?? "",
+              width: double.infinity,
+              height: 220,
+              fit: BoxFit.fill,
+              progressIndicatorBuilder: (context, url, downloadProgress) =>
+                  Center(
+                      child: CircularProgressIndicator(
+                          value: downloadProgress.progress)),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            ),
+          ),
           Text(
-            news.author,
+            news.author ?? "",
             textAlign: TextAlign.start,
           ),
           Text(
-            news.title,
-            textAlign: TextAlign.start,style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w400,
-          ),
+            news.title ?? "",
+            textAlign: TextAlign.start,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w400,
+            ),
           ),
           Text(
-            news.date,
+            news.publishedAt ?? "",
             textAlign: TextAlign.end,
           ),
         ],
